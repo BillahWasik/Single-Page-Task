@@ -1,0 +1,347 @@
+﻿@{
+    ViewData["Title"] = "Meeting Minutes";
+}
+
+<style>
+    .required:after {
+    content: ' *';
+    color: red;
+    }
+
+    label.required:after {
+    content: ' *';
+    color: red;
+    }
+</style>
+<div class="card mb-1">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <p>Meeting Minutes</p>
+            <span>
+                <i class="bi bi-pencil-square"></i>
+            </span>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="rdoCustomerType" id="rdoCorporate" value="Corporate" />
+            <label class="form-check-label" for="rdoCorporate">Corporate</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="rdoCustomerType" id="rdoIndividual" value="Individual" />
+            <label class="form-check-label" for="rdoIndividual">Individual</label>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label required">Customer</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <select id="ddlCustomers" class="form-select" aria-label="Default select example"></select>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label class="form-label">Date</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <input type="date" id="meetingDate" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label class="form-label">Time</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <input type="time" id="meetingTime" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label required">Meeting Place</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <input id="txtMeetingPlace" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label required">Attends From Client Side</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <textarea id="txtAreaAttndCSide" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label required">Attends From Host Side</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <textarea id="txtAreaAttndHSide" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label required">Meeting Agenda</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <textarea id="txtAreaMeetingAgenda" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label required">Meeting Discussion</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <textarea id="txtAreaMeetingDiscussion" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label required">Meeting Decision</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <textarea id="txtAreaMeetingDecision" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-1">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="row mb-1">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label class="form-label">Interested Product/Service</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-12">
+                        <select id="ddlProductService" class="form-select" aria-label="Default select example"></select>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label class="form-label">Quantity</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <input type="number" id="txtQuantity" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <label class="form-label">Unit</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <input type="text" id="txtUnit" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-12">
+                        <button id="btnAddProductService" class="btn btn-outline-primary">Add</button>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-12"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-1">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">SL#</th>
+                            <th scope="col">Interested Product/Service Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productServiceTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-lg-start align-items-center">
+            <button id="btnSave" class="btn btn-primary me-3">Save</button>
+            <button id="btnRefresh" class="btn btn-secondary">Refresh</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        var productServiceList = [];
+
+        $(document).ready(function () {
+            $('input[name="rdoCustomerType"]').change(function () {
+                loadCustomers($(this).val());
+            });
+
+            $('#ddlProductService').change(function () {
+                var selectedOption = $(this).find('option:selected');
+                $('#txtUnit').val(selectedOption.data('unit'));
+            });
+
+            $('#btnAddProductService').click(function () {
+                addProductService();
+            });
+
+            $('#btnSave').click(function () {
+                saveMeetingMinutes();
+            });
+
+            loadProductsServices();
+        });
+
+        function loadCustomers(customerType) {
+            $.ajax({
+                url: '@Url.Action("GetCustomers", "Home")',
+                type: 'GET',
+                data: { customerType: customerType },
+                success: function (data) {
+                    $('#ddlCustomers').empty();
+                    $('#ddlCustomers').append($('<option>', {
+                        value: '',
+                        text: 'Select a Customer',
+                        disabled: true,
+                        selected: true
+                    }));
+                    $.each(data, function (i, item) {
+                        $('#ddlCustomers').append($('<option>', {
+                            value: item.customerID,
+                            text: item.customerName
+                        }));
+                    });
+                }
+            });
+        }
+
+        function loadProductsServices() {
+            $.ajax({
+                url: '@Url.Action("GetProductsServices", "Home")',
+                type: 'GET',
+                success: function (data) {
+                    $('#ddlProductService').empty();
+                    $('#ddlProductService').append($('<option>', {
+                        value: '',
+                        text: 'Select Product/Service',
+                        disabled: true,
+                        selected: true
+                    }));
+                    $.each(data, function (i, item) {
+                        $('#ddlProductService').append($('<option>', {
+                            value: item.productServiceID,
+                            text: item.productServiceName,
+                            'data-unit': item.unit
+                        }));
+                    });
+                }
+            });
+        }
+
+
+        function addProductService() {
+
+
+
+
+            var productServiceID = $('#ddlProductService').val();
+            var productServiceName = $('#ddlProductService option:selected').text();
+            var quantity = $('#txtQuantity').val();
+            var unit = $('#txtUnit').val();
+
+            var productService = {
+                ProductServiceID: productServiceID,
+                ProductServiceName: productServiceName,
+                Quantity: quantity,
+                Unit: unit
+            };
+
+            productServiceList.push(productService);
+            renderProductServiceTable();
+        }
+
+        function renderProductServiceTable() {
+            var tbody = $('#productServiceTableBody');
+            tbody.empty();
+            $.each(productServiceList, function (i, item) {
+                var row = '<tr>' +
+                    '<td>' + (i + 1) + '</td>' +
+                    '<td>' + item.ProductServiceName + '</td>' +
+                    '<td>' + item.Quantity + '</td>' +
+                    '<td>' + item.Unit + '</td>' +
+                    '<td><button type="button" onclick="removeProductService(' + i + ')" class="btn btn-danger btn-sm">Delete</button></td>' +
+                    '</tr>';
+                tbody.append(row);
+            });
+        }
+
+        function removeProductService(index) {
+            productServiceList.splice(index, 1);
+            renderProductServiceTable();
+        }
+
+        function saveMeetingMinutes() {
+            var meetingDate = $('#meetingDate').val();
+            if (!meetingDate) {
+                alert('Please select a valid meeting date.');
+                return;
+            }
+
+            var meetingMinutes = {
+                CustomerType: $('input[name="rdoCustomerType"]:checked').val(),
+                CustomerID: $('#ddlCustomers').val(),
+                MeetingDate: meetingDate,
+                MeetingTime: $('#meetingTime').val(),
+                MeetingPlace: $('#txtMeetingPlace').val(),
+                attendsFromClientSide: $('#txtAreaAttndCSide').val(),
+                AttendsFromHostSide: $('#txtAreaAttndHSide').val(),
+                meetingAgenda: $('#txtAreaMeetingAgenda').val(),
+                MeetingDiscussion: $('#txtAreaMeetingDiscussion').val(),
+                MeetingDecision: $('#txtAreaMeetingDecision').val(),
+                MeetingDetails: productServiceList
+            };
+
+            $.ajax({
+                url: '@Url.Action("SaveMeetingMinutes", "Home")',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(meetingMinutes),
+                success: function (response) {
+                    if (response.success) {
+                        alert('Meeting minutes saved successfully.');
+                        location.reload();
+                    } else {
+                        alert('Failed to save meeting minutes: ' + response.message);
+                    }
+                }
+            });
+        }
+
+    </script>
+}
